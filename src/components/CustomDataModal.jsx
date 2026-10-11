@@ -39,7 +39,7 @@ import {
   DEFAULT_NQUEENS_N
 } from '../types/data';
 
-const PROCESS_COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4'];
+const PROCESS_COLORS = ['#171717', '#404040', '#737373', '#a3a3a3', '#d4d4d4', '#525252'];
 
 export default function CustomDataModal({
   isOpen,

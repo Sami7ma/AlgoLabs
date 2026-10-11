@@ -39,20 +39,20 @@ const ALGO_ICON_MAP = {
   // OS
   'first-fit': <Zap size={14} color="var(--primary)" />,
   'best-fit': <Activity size={14} color="#10b981" />,
-  'worst-fit': <Sliders size={14} color="#f59e0b" />,
+  'worst-fit': <Sliders size={14} color="var(--primary)" />,
   'next-fit': <RotateCcw size={14} color="#06b6d4" />,
   'round-robin': <RotateCcw size={14} color="var(--primary)" />,
   'fcfs-cpu': <ChevronRight size={14} color="#10b981" />,
-  'sjf-cpu': <TrendingUp size={14} color="#f59e0b" />,
+  'sjf-cpu': <TrendingUp size={14} color="var(--primary)" />,
   'priority-cpu': <Sparkles size={14} color="#8b5cf6" />,
   'lru': <RotateCcw size={14} color="var(--primary)" />,
   'fifo-paging': <ChevronRight size={14} color="#10b981" />,
-  'optimal-paging': <Sparkles size={14} color="#f59e0b" />,
+  'optimal-paging': <Sparkles size={14} color="var(--primary)" />,
   // Graph
   'bfs': <Network size={14} color="#3b82f6" />,
   'dfs': <FolderTree size={14} color="#8b5cf6" />,
   'dijkstra': <Zap size={14} color="#10b981" />,
-  'a-star': <Sparkles size={14} color="#f59e0b" />,
+  'a-star': <Sparkles size={14} color="var(--primary)" />,
   'floyd-warshall': <Grid size={14} color="#8b5cf6" />,
   'kruskal': <Network size={14} color="#10b981" />,
   'prim': <Network size={14} color="#06b6d4" />,
@@ -61,19 +61,19 @@ const ALGO_ICON_MAP = {
   // Sorting & Searching
   quicksort: <Zap size={14} color="#8b5cf6" />,
   mergesort: <Layers size={14} color="#10b981" />,
-  bubblesort: <Sliders size={14} color="#f59e0b" />,
+  bubblesort: <Sliders size={14} color="var(--primary)" />,
   'binary-search': <Search size={14} color="#06b6d4" />,
   // DP
   'knapsack-dp': <Boxes size={14} color="var(--primary)" />,
   'lcs-dp': <Grid size={14} color="#10b981" />,
-  'kadanes': <TrendingUp size={14} color="#f59e0b" />,
+  'kadanes': <TrendingUp size={14} color="var(--primary)" />,
   // Array & String
   'sliding-window': <Sliders size={14} color="#06b6d4" />,
   'two-pointers': <Layers size={14} color="#8b5cf6" />,
   'kmp-string': <Search size={14} color="#ec4899" />,
   'euclidean-gcd': <Code2 size={14} color="#10b981" />,
   // Backtracking & Greedy
-  'n-queens': <Boxes size={14} color="#f59e0b" />,
+  'n-queens': <Boxes size={14} color="var(--primary)" />,
   'activity-selection': <Activity size={14} color="#10b981" />
 };
 

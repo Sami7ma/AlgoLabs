@@ -59,7 +59,7 @@ export default function TreeGraphVisualizer({
                 edgeColor = 'var(--success)';
                 strokeWidth = 4;
               } else if (isCurrent) {
-                edgeColor = '#f59e0b';
+                edgeColor = '#737373';
                 strokeWidth = 3;
               }
 

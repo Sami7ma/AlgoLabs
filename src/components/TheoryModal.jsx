@@ -26,7 +26,7 @@ export default function TheoryModal({ isOpen, onClose }) {
         <div className="modal-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
             <BookOpen size={20} color="var(--primary)" />
-            <h2>AlgoLab • Algorithm Theory & Principles Reference Manual</h2>
+            <h2>AlgoVisuals • Algorithm Theory & Principles Reference Manual</h2>
           </div>
           <button className="btn btn-outline btn-sm" onClick={onClose}>
             <X size={16} />
@@ -147,7 +147,7 @@ export default function TheoryModal({ isOpen, onClose }) {
                   <p>Finds longest non-contiguous common character match in O(M·N) time.</p>
                 </div>
                 <div className="card theory-inner-card">
-                  <h4 style={{ color: '#f59e0b', fontWeight: 800 }}>Kadane's Algorithm</h4>
+                  <h4 style={{ color: 'var(--primary)', fontWeight: 800 }}>Kadane's Algorithm</h4>
                   <p><strong>Recurrence:</strong> currMax = max(x, currMax + x), maxSoFar = max(maxSoFar, currMax)</p>
                   <p>Finds optimal maximum contiguous subarray sum in single linear O(N) pass.</p>
                 </div>
@@ -185,7 +185,7 @@ export default function TheoryModal({ isOpen, onClose }) {
               <div className="theory-title">State Space Backtracking & Greedy Choices</div>
               <div className="theory-card-grid">
                 <div className="card theory-inner-card">
-                  <h4 style={{ color: '#f59e0b', fontWeight: 800 }}>N-Queens Problem</h4>
+                  <h4 style={{ color: 'var(--primary)', fontWeight: 800 }}>N-Queens Problem</h4>
                   <p><strong>Strategy:</strong> Backtracking (Depth-First Search on State Space Tree)</p>
                   <p>Places N queens row by row. If an attack conflict occurs, prunes the search branch and rolls back.</p>
                 </div>

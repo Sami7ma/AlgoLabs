@@ -1,10 +1,10 @@
 // ==========================================================================
-// AlgoLab • 20+ Algorithm Registry, Domains, Presets & Themes
+// AlgoVisuals • 20+ Algorithm Registry, Domains, Presets & Themes
 // ==========================================================================
 
 export const THEMES = [
-  { id: 'woody-gold', name: 'Champagne Gold & Wood', icon: 'Sun', desc: 'Classy champagne gold, ivory & warm walnut' },
-  { id: 'obsidian-gold', name: 'Obsidian Gold Glass', icon: 'Moon', desc: 'Deep obsidian dark glass & luminous gold' }
+  { id: 'woody-gold', name: 'Light Mode', icon: 'Sun', desc: 'Clean white and charcoal interface' },
+  { id: 'obsidian-gold', name: 'Dark Mode', icon: 'Moon', desc: 'Deep black and white interface' }
 ];
 
 export const CATEGORIES = {
@@ -472,14 +472,14 @@ export const DEFAULT_HOLES = [
 export const DEFAULT_PROCESSES = [
   { id: 'P1', name: 'P1', size: 212, color: '#3b82f6' },
   { id: 'P2', name: 'P2', size: 417, color: '#10b981' },
-  { id: 'P3', name: 'P3', size: 112, color: '#f59e0b' },
+  { id: 'P3', name: 'P3', size: 112, color: '#737373' },
   { id: 'P4', name: 'P4', size: 426, color: '#8b5cf6' }
 ];
 
 export const DEFAULT_CPU_PROCESSES = [
   { id: 'P1', name: 'P1', arrival: 0, burst: 5, priority: 2, color: '#3b82f6' },
   { id: 'P2', name: 'P2', arrival: 1, burst: 3, priority: 1, color: '#10b981' },
-  { id: 'P3', name: 'P3', arrival: 2, burst: 8, priority: 3, color: '#f59e0b' },
+  { id: 'P3', name: 'P3', arrival: 2, burst: 8, priority: 3, color: '#737373' },
   { id: 'P4', name: 'P4', arrival: 3, burst: 6, priority: 2, color: '#8b5cf6' }
 ];
 

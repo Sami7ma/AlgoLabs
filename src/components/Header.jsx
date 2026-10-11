@@ -22,19 +22,22 @@ export default function Header({
   return (
     <header className="header-bar">
       <div className="header-inner">
-        {/* Brand & AlgoLab Logo */}
+        {/* Brand & AlgoVisuals Logo */}
         <div className="brand-section">
           <div className="brand-logo-frame">
             <img
               className={`brand-logo-image ${isDark ? 'brand-logo-dark' : 'brand-logo-light'}`}
-              src={isDark ? '/assets/algodark.svg' : '/assets/algolight.svg'}
-              alt="AlgoLab"
-              title="AlgoLab CS Laboratory & Visualizer Workbench"
+              src={isDark ? '/assets/DarkIcon.png' : '/assets/LightIcon.png'}
+              alt="AlgoVisuals"
+              title="AlgoVisuals CS Laboratory & Visualizer Workbench"
             />
           </div>
 
           <div className="brand-text-container">
-            <h1 className="brand-title">AlgoLab • Algorithm Simulation Workbench</h1>
+            <h1 className="brand-title">
+              <span>AlgoVisuals</span>
+              <span className="brand-title-detail"> • Algorithm Simulation Workbench</span>
+            </h1>
             <p className="brand-subtitle">
               OS Core • Graph & MST • Dynamic Programming • Sorting • Array & String • Backtracking
             </p>
@@ -59,21 +62,21 @@ export default function Header({
             <BarChart2 size={13} /> <span className="btn-text-hide-mobile">Compare All</span>
           </button>
 
-          {/* Classy Gold/Obsidian Theme Toggle */}
+          {/* Monochrome theme toggle */}
           <button
             className="btn btn-outline btn-sm theme-toggle-btn"
             onClick={toggleTheme}
-            title={isDark ? 'Switch to Champagne Gold & Wood (Light)' : 'Switch to Obsidian Gold Glass (Dark)'}
+            title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             {isDark ? (
               <>
                 <Sun size={14} color="var(--warning)" />
-                <span className="btn-text-hide-mobile">Wood & Gold</span>
+                <span className="btn-text-hide-mobile">Light Mode</span>
               </>
             ) : (
               <>
                 <Moon size={14} color="var(--primary)" />
-                <span className="btn-text-hide-mobile">Obsidian Dark</span>
+                <span className="btn-text-hide-mobile">Dark Mode</span>
               </>
             )}
           </button>

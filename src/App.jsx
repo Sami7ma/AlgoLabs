@@ -25,6 +25,7 @@ import {
   DEFAULT_EUCLIDEAN_B,
   DEFAULT_NQUEENS_N
 } from './types/data';
+import { getAlgorithmColor } from './utils/algorithmColors';
 
 // Trace Generators
 import { generateSimulationTrace as generateMemoryTrace } from './algorithms/memoryManager';
@@ -58,7 +59,7 @@ import TheoryModal from './components/TheoryModal';
 import CustomDataModal from './components/CustomDataModal';
 
 export default function App() {
-  // Theme & Navigation State (Woody Champagne Gold & Obsidian Dark Glass)
+  // Theme & Navigation State (light and dark monochrome themes)
   const [theme, setTheme] = useState(() => {
     if (typeof window === 'undefined') return 'woody-gold';
     return window.matchMedia?.('(prefers-color-scheme: dark)').matches
@@ -111,7 +112,7 @@ export default function App() {
     document.documentElement.setAttribute('data-theme', theme);
     document.querySelector('meta[name="theme-color"]')?.setAttribute(
       'content',
-      theme === 'obsidian-gold' ? '#0a0d14' : '#f4efe5'
+      theme === 'obsidian-gold' ? '#000000' : '#ffffff'
     );
   }, [theme]);
 
@@ -346,7 +347,7 @@ export default function App() {
         />
 
         {/* Visualizer & Analytics Canvas */}
-        <main className="app-main">
+        <main className="app-main" style={{ '--algorithm-accent': getAlgorithmColor(selectedAlgo) }}>
           {/* 1. OS Memory Visualizer */}
           {category === 'OS' && ['first-fit', 'best-fit', 'worst-fit', 'next-fit'].includes(selectedAlgo) && currentStepData && (
             <MemoryVisualizer
@@ -399,6 +400,7 @@ export default function App() {
               onGenerateMaze={handleRandomizeActiveData}
               onClearWalls={() => { setGridConfig({ ...gridConfig, walls: [] }); setCurrentStepIndex(0); }}
               isFinished={isFinished}
+              accentColor={getAlgorithmColor(selectedAlgo)}
             />
           )}
 
@@ -436,6 +438,7 @@ export default function App() {
               target={searchTarget}
               found={currentStepData.found}
               isFinished={isFinished}
+              accentColor={getAlgorithmColor(selectedAlgo)}
             />
           )}
 
