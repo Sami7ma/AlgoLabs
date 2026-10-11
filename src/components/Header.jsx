@@ -24,12 +24,14 @@ export default function Header({
       <div className="header-inner">
         {/* Brand & AlgoLab Logo */}
         <div className="brand-section">
-          <img
-            className={`brand-logo-image ${isDark ? 'brand-logo-dark' : 'brand-logo-light'}`}
-            src={isDark ? '/algolab-dark.png' : '/algolab-light.png'}
-            alt="AlgoLab"
-            title="AlgoLab CS Laboratory & Visualizer Workbench"
-          />
+          <div className="brand-logo-frame">
+            <img
+              className={`brand-logo-image ${isDark ? 'brand-logo-dark' : 'brand-logo-light'}`}
+              src={isDark ? '/assets/algodark.svg' : '/assets/algolight.svg'}
+              alt="AlgoLab"
+              title="AlgoLab CS Laboratory & Visualizer Workbench"
+            />
+          </div>
 
           <div className="brand-text-container">
             <h1 className="brand-title">AlgoLab • Algorithm Simulation Workbench</h1>
