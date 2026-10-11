@@ -4,8 +4,6 @@ import {
   Moon, 
   BarChart2, 
   BookOpen, 
-  Menu,
-  X,
   Sparkles
 } from 'lucide-react';
 
@@ -13,9 +11,7 @@ export default function Header({
   theme,
   setTheme,
   onOpenComparison,
-  onOpenTheory,
-  isMobileMenuOpen,
-  onToggleMobileMenu
+  onOpenTheory
 }) {
   const isDark = theme === 'obsidian-gold' || theme === 'dark';
 
@@ -26,24 +22,14 @@ export default function Header({
   return (
     <header className="header-bar">
       <div className="header-inner">
-        {/* Brand & DSA Algorithm Icon */}
+        {/* Brand & AlgoLab Logo */}
         <div className="brand-section">
-          <button 
-            className="mobile-menu-toggle btn btn-outline btn-sm"
-            onClick={onToggleMobileMenu}
-            aria-label="Toggle Navigation Sidebar"
-          >
-            {isMobileMenuOpen ? <X size={16} /> : <Menu size={16} />}
-          </button>
-
-          {/* Custom DSA / Algorithm SVG Logo */}
-          <div className="brand-icon dsa-brand-icon" title="AlgoLab CS Laboratory & Visualizer Workbench">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m18 16 4-4-4-4" />
-              <path d="m6 8-4 4 4 4" />
-              <path d="m14.5 4-5 16" />
-            </svg>
-          </div>
+          <img
+            className={`brand-logo-image ${isDark ? 'brand-logo-dark' : 'brand-logo-light'}`}
+            src={isDark ? '/algolab-dark.png' : '/algolab-light.png'}
+            alt="AlgoLab"
+            title="AlgoLab CS Laboratory & Visualizer Workbench"
+          />
 
           <div className="brand-text-container">
             <h1 className="brand-title">AlgoLab • Algorithm Simulation Workbench</h1>
@@ -79,12 +65,12 @@ export default function Header({
           >
             {isDark ? (
               <>
-                <Sun size={14} color="#f59e0b" />
+                <Sun size={14} color="var(--warning)" />
                 <span className="btn-text-hide-mobile">Wood & Gold</span>
               </>
             ) : (
               <>
-                <Moon size={14} color="#c99738" />
+                <Moon size={14} color="var(--primary)" />
                 <span className="btn-text-hide-mobile">Obsidian Dark</span>
               </>
             )}
