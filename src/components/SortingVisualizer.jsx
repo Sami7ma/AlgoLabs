@@ -14,14 +14,13 @@ export default function SortingVisualizer({
   mid = -1,
   target = null,
   found = false,
-  isFinished = false,
-  accentColor = 'var(--primary)'
+  isFinished = false
 }) {
   const isSearch = algorithmId === 'binary-search';
   const maxValue = Math.max(...array, 100);
 
   return (
-    <div className="card visualizer-canvas-card" style={{ '--viz-accent': accentColor }}>
+    <div className="card visualizer-canvas-card">
       <div className="card-header">
         <h3 className="card-title">
           {isSearch ? <Search size={16} color="var(--primary)" /> : <BarChart3 size={16} color="var(--primary)" />}
@@ -106,10 +105,10 @@ export default function SortingVisualizer({
         ) : (
           <div className="legend-pills">
             <span className="legend-item">
-              <span className="legend-chip" style={{ background: 'var(--primary)' }} /> Comparing
+              <span className="legend-chip" style={{ background: 'var(--viz-data-1)' }} /> Comparing
             </span>
             <span className="legend-item">
-              <span className="legend-chip" style={{ background: 'var(--primary)' }} /> Pivot
+              <span className="legend-chip" style={{ background: '#f59e0b' }} /> Pivot
             </span>
             <span className="legend-item">
               <span className="legend-chip" style={{ background: 'var(--success)' }} /> Sorted

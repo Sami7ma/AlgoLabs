@@ -59,7 +59,7 @@ export default function TreeGraphVisualizer({
                 edgeColor = 'var(--success)';
                 strokeWidth = 4;
               } else if (isCurrent) {
-                edgeColor = '#737373';
+                edgeColor = 'var(--viz-data-5)';
                 strokeWidth = 3;
               }
 
@@ -106,8 +106,8 @@ export default function TreeGraphVisualizer({
               let nodeFill = 'var(--bg-tertiary)';
               let nodeBorder = 'var(--border-color)';
               if (isInMst || isTopoProcessed) {
-                nodeFill = 'var(--primary)';
-                nodeBorder = 'var(--primary)';
+                nodeFill = 'var(--viz-data-1)';
+                nodeBorder = 'var(--viz-data-1)';
               }
 
               return (
