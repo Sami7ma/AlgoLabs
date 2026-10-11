@@ -59,9 +59,9 @@ const ALGO_ICON_MAP = {
   'topological-sort': <FolderTree size={14} color="#3b82f6" />,
   'union-find': <Boxes size={14} color="#ec4899" />,
   // Sorting & Searching
-  'quick-sort': <Zap size={14} color="#8b5cf6" />,
-  'merge-sort': <Layers size={14} color="#10b981" />,
-  'bubble-sort': <Sliders size={14} color="#f59e0b" />,
+  quicksort: <Zap size={14} color="#8b5cf6" />,
+  mergesort: <Layers size={14} color="#10b981" />,
+  bubblesort: <Sliders size={14} color="#f59e0b" />,
   'binary-search': <Search size={14} color="#06b6d4" />,
   // DP
   'knapsack-dp': <Boxes size={14} color="var(--primary)" />,
@@ -95,12 +95,16 @@ export default function Sidebar({
   canStepBackward,
   onOpenCustomData,
   onRandomizeData,
-  isOpenOnMobile = false
+  onScrub,
+  variant = 'desktop',
+  className = ''
 }) {
   const [isDomainDropdownOpen, setIsDomainDropdownOpen] = useState(false);
+  const [isSubcategoryDropdownOpen, setIsSubcategoryDropdownOpen] = useState(false);
   const [isAlgoDropdownOpen, setIsAlgoDropdownOpen] = useState(false);
 
   const domainDropdownRef = useRef(null);
+  const subcategoryDropdownRef = useRef(null);
   const algoDropdownRef = useRef(null);
 
   const currentCatObj = CATEGORIES[selectedCategory] || CATEGORIES.OS;
@@ -116,6 +120,9 @@ export default function Sidebar({
       if (domainDropdownRef.current && !domainDropdownRef.current.contains(e.target)) {
         setIsDomainDropdownOpen(false);
       }
+      if (subcategoryDropdownRef.current && !subcategoryDropdownRef.current.contains(e.target)) {
+        setIsSubcategoryDropdownOpen(false);
+      }
       if (algoDropdownRef.current && !algoDropdownRef.current.contains(e.target)) {
         setIsAlgoDropdownOpen(false);
       }
@@ -125,19 +132,47 @@ export default function Sidebar({
   }, []);
 
   return (
-    <aside className={`app-sidebar ${isOpenOnMobile ? 'sidebar-mobile-open' : ''}`}>
+    <aside className={`app-sidebar ${className} sidebar-variant-${variant}`}>
+      {variant === 'mobile-controls' && (
+        <div className="embedded-workbench">
+          <div className="embedded-workbench-header">
+            <span className="ribbon-breadcrumb">
+              <strong>{currentCatObj.name}</strong> &rsaquo; {currentAlgoObj.name}
+            </span>
+            <div className="embedded-complexity">
+              <span className="complexity-badge">{currentAlgoObj.timeComplexity}</span>
+              <span className="complexity-badge">{currentAlgoObj.spaceComplexity}</span>
+            </div>
+          </div>
+          <div className="embedded-workbench-timeline">
+            <input
+              type="range"
+              className="ribbon-scrubber"
+              min={0}
+              max={totalSteps}
+              value={currentStepIndex}
+              onChange={(e) => onScrub?.(Number(e.target.value))}
+              title="Drag to scrub timeline"
+            />
+            <span className="ribbon-step-tag">
+              Step {currentStepIndex} / {totalSteps}
+            </span>
+          </div>
+        </div>
+      )}
+
       {/* 1. Category Switcher (Pro Dropdown Selector) */}
-      <div className="sidebar-section" ref={domainDropdownRef} style={{ position: 'relative' }}>
+      <div className="sidebar-section navigation-section" ref={domainDropdownRef} style={{ position: 'relative' }}>
         <div className="sidebar-header-row">
           <label className="sidebar-label">Algorithm Domain</label>
           <span className="complexity-badge">6 Domains</span>
         </div>
-
         <button
           type="button"
           className="custom-select-trigger"
           onClick={() => {
             setIsDomainDropdownOpen(!isDomainDropdownOpen);
+            setIsSubcategoryDropdownOpen(false);
             setIsAlgoDropdownOpen(false);
           }}
           disabled={isRunning}
@@ -180,30 +215,54 @@ export default function Sidebar({
 
       {/* 2. Subcategory (RED PART: Visible Outside Without Scrolling) */}
       {subcategories.length > 1 && (
-        <div className="sidebar-section">
-          <label className="sidebar-label">Subcategory</label>
-          <div className="subcategory-vertical-stack">
-            {subcategories.map(sub => {
-              const isSubActive = activeSubcategory.id === sub.id;
-              return (
-                <button
-                  key={sub.id}
-                  type="button"
-                  className={`subcategory-stack-btn ${isSubActive ? 'active' : ''}`}
-                  onClick={() => onSelectAlgo(sub.defaultAlgo)}
-                  disabled={isRunning}
-                >
-                  <span style={{ fontWeight: isSubActive ? 800 : 600 }}>{sub.name}</span>
-                  {isSubActive && <Check size={14} color="var(--primary)" />}
-                </button>
-              );
-            })}
+          <div className="sidebar-section navigation-section" ref={subcategoryDropdownRef} style={{ position: 'relative' }}>
+            <div className="sidebar-header-row">
+              <label className="sidebar-label">Subcategory</label>
+              <span className="complexity-badge">{subcategories.length} Options</span>
+            </div>
+
+            <button
+              type="button"
+              className="custom-select-trigger"
+              onClick={() => {
+                setIsSubcategoryDropdownOpen(!isSubcategoryDropdownOpen);
+                setIsDomainDropdownOpen(false);
+                setIsAlgoDropdownOpen(false);
+              }}
+              disabled={isRunning}
+            >
+              <span style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {activeSubcategory.name}
+              </span>
+              <ChevronDown size={15} color="var(--primary)" style={{ transform: isSubcategoryDropdownOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.15s ease' }} />
+            </button>
+
+            {isSubcategoryDropdownOpen && (
+              <div className="custom-select-menu">
+                {subcategories.map(sub => {
+                  const isSubActive = activeSubcategory.id === sub.id;
+                  return (
+                    <button
+                      key={sub.id}
+                      type="button"
+                      className={`custom-select-item ${isSubActive ? 'active' : ''}`}
+                      onClick={() => {
+                        onSelectAlgo(sub.defaultAlgo);
+                        setIsSubcategoryDropdownOpen(false);
+                      }}
+                    >
+                      <span style={{ fontWeight: isSubActive ? 800 : 600 }}>{sub.name}</span>
+                      {isSubActive && <Check size={14} color="var(--primary)" />}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
-        </div>
       )}
 
       {/* 3. Active Algorithm (GREEN PART: Clean Dropdown Menu) */}
-      <div className="sidebar-section" ref={algoDropdownRef} style={{ position: 'relative' }}>
+      <div className="sidebar-section navigation-section" ref={algoDropdownRef} style={{ position: 'relative' }}>
         <div className="sidebar-header-row">
           <label className="sidebar-label">Active Algorithm</label>
           <span className="complexity-badge">{currentAlgoObj.timeComplexity}</span>
@@ -216,6 +275,7 @@ export default function Sidebar({
           onClick={() => {
             setIsAlgoDropdownOpen(!isAlgoDropdownOpen);
             setIsDomainDropdownOpen(false);
+            setIsSubcategoryDropdownOpen(false);
           }}
           disabled={isRunning}
         >
@@ -261,13 +321,33 @@ export default function Sidebar({
         )}
       </div>
 
-      {/* 4. Playback Controls Toolbar */}
+      {/* 4. Dataset Configuration Actions */}
+      <div className="sidebar-section dataset-section">
+        <label className="sidebar-label">Dataset Configuration</label>
+        <div className="dataset-actions-row">
+          <button
+            className="btn btn-secondary btn-sm"
+            style={{ flex: 1 }}
+            onClick={onOpenCustomData}
+            title="Configure custom arrays, memory holes, or strings"
+          >
+            <Sliders size={13} /> Edit Data
+          </button>
+          <button
+            className="btn btn-outline btn-sm"
+            style={{ flex: 1 }}
+            onClick={onRandomizeData}
+            title="Generate random sample dataset"
+          >
+            <Shuffle size={13} /> Randomize
+          </button>
+        </div>
+      </div>
+
+      {/* 5. Playback Controls Toolbar */}
       <div className="sidebar-section controls-section">
         <div className="sidebar-header-row">
           <label className="sidebar-label">Simulation Controls</label>
-          <span className="step-counter">
-            Step {currentStepIndex} / {totalSteps}
-          </span>
         </div>
 
         <div className="sidebar-controls-grid">
@@ -327,29 +407,6 @@ export default function Sidebar({
               ))}
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* 5. Dataset Configuration Actions */}
-      <div className="sidebar-section">
-        <label className="sidebar-label">Dataset Configuration</label>
-        <div className="dataset-actions-row">
-          <button
-            className="btn btn-secondary btn-sm"
-            style={{ flex: 1 }}
-            onClick={onOpenCustomData}
-            title="Configure custom arrays, memory holes, or strings"
-          >
-            <Sliders size={13} /> Edit Data
-          </button>
-          <button
-            className="btn btn-outline btn-sm"
-            style={{ flex: 1 }}
-            onClick={onRandomizeData}
-            title="Generate random sample dataset"
-          >
-            <Shuffle size={13} /> Randomize
-          </button>
         </div>
       </div>
 

@@ -59,15 +59,19 @@ import CustomDataModal from './components/CustomDataModal';
 
 export default function App() {
   // Theme & Navigation State (Woody Champagne Gold & Obsidian Dark Glass)
-  const [theme, setTheme] = useState('woody-gold');
-  const [category, setCategory] = useState('OS'); // OS, GRAPH, SORT_SEARCH, DP, ARRAY_STRING, BACKTRACKING_GREEDY
-  const [selectedAlgo, setSelectedAlgo] = useState('first-fit');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === 'undefined') return 'woody-gold';
+    return window.matchMedia?.('(prefers-color-scheme: dark)').matches
+      ? 'obsidian-gold'
+      : 'woody-gold';
+  });
+  const [category, setCategory] = useState('SORT_SEARCH'); // OS, GRAPH, SORT_SEARCH, DP, ARRAY_STRING, BACKTRACKING_GREEDY
+  const [selectedAlgo, setSelectedAlgo] = useState('quicksort');
 
   // Playback State
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-  const [speed, setSpeed] = useState(1);
+  const [speed, setSpeed] = useState(1.5);
 
   // Modals
   const [showComparison, setShowComparison] = useState(false);
@@ -105,6 +109,10 @@ export default function App() {
   // Sync theme attribute to HTML document
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute(
+      'content',
+      theme === 'obsidian-gold' ? '#0a0d14' : '#f4efe5'
+    );
   }, [theme]);
 
   // Handle Category Switching
@@ -296,6 +304,26 @@ export default function App() {
     setIsRunning(false);
   };
 
+  const sidebarProps = {
+    selectedCategory: category,
+    onSelectCategory: handleSelectCategory,
+    selectedAlgo,
+    onSelectAlgo: handleSelectAlgo,
+    isRunning,
+    onTogglePlay: () => setIsRunning(prev => !prev),
+    onStepForward: () => currentStepIndex < totalSteps && setCurrentStepIndex(c => c + 1),
+    onStepBackward: () => currentStepIndex > 0 && setCurrentStepIndex(c => c - 1),
+    onReset: () => { setCurrentStepIndex(0); setIsRunning(false); },
+    currentStepIndex,
+    totalSteps,
+    speed,
+    setSpeed,
+    canStepForward: currentStepIndex < totalSteps,
+    canStepBackward: currentStepIndex > 0,
+    onOpenCustomData: () => setShowCustomData(true),
+    onRandomizeData: handleRandomizeActiveData
+  };
+
   return (
     <div className="app-wrapper">
       {/* Header Bar */}
@@ -304,37 +332,17 @@ export default function App() {
         setTheme={setTheme}
         onOpenComparison={() => setShowComparison(true)}
         onOpenTheory={() => setShowTheory(true)}
-        isMobileMenuOpen={isMobileMenuOpen}
-        onToggleMobileMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       />
 
       {/* Main 2-Column Responsive Layout */}
       <div className="app-layout">
-        {/* Mobile Backdrop */}
-        {isMobileMenuOpen && (
-          <div className="sidebar-backdrop" onClick={() => setIsMobileMenuOpen(false)} />
-        )}
-
         {/* Sidebar Controls */}
+        <Sidebar {...sidebarProps} variant="desktop" />
+
         <Sidebar
-          selectedCategory={category}
-          onSelectCategory={handleSelectCategory}
-          selectedAlgo={selectedAlgo}
-          onSelectAlgo={handleSelectAlgo}
-          isRunning={isRunning}
-          onTogglePlay={() => setIsRunning(!isRunning)}
-          onStepForward={() => currentStepIndex < totalSteps && setCurrentStepIndex(c => c + 1)}
-          onStepBackward={() => currentStepIndex > 0 && setCurrentStepIndex(c => c - 1)}
-          onReset={() => { setCurrentStepIndex(0); setIsRunning(false); }}
-          currentStepIndex={currentStepIndex}
-          totalSteps={totalSteps}
-          speed={speed}
-          setSpeed={setSpeed}
-          canStepForward={currentStepIndex < totalSteps}
-          canStepBackward={currentStepIndex > 0}
-          onOpenCustomData={() => setShowCustomData(true)}
-          onRandomizeData={handleRandomizeActiveData}
-          isOpenOnMobile={isMobileMenuOpen}
+          {...sidebarProps}
+          variant="mobile-navigation"
+          className="mobile-only-sidebar"
         />
 
         {/* Visualizer & Analytics Canvas */}
@@ -464,60 +472,15 @@ export default function App() {
             />
           )}
 
-          {/* Interactive Workbench Ribbon Bar (Yellow Highlight Area) */}
-          <div className="workbench-ribbon-bar">
-            <div className="ribbon-left">
-              <span className="ribbon-breadcrumb">
-                <strong>{CATEGORIES[category]?.name}</strong> &rsaquo; {ALGORITHMS_REGISTRY[selectedAlgo]?.name}
-              </span>
-              <span className="complexity-badge">{ALGORITHMS_REGISTRY[selectedAlgo]?.timeComplexity}</span>
-              <span className="complexity-badge" style={{ opacity: 0.85 }}>{ALGORITHMS_REGISTRY[selectedAlgo]?.spaceComplexity}</span>
-            </div>
-
-            <div className="ribbon-center">
-              <input
-                type="range"
-                className="ribbon-scrubber"
-                min={0}
-                max={totalSteps}
-                value={currentStepIndex}
-                onChange={(e) => {
-                  setCurrentStepIndex(Number(e.target.value));
-                  setIsRunning(false);
-                }}
-                title="Drag to scrub timeline"
-              />
-              <span className="ribbon-step-tag">
-                Step {currentStepIndex} / {totalSteps}
-              </span>
-            </div>
-
-            <div className="ribbon-right">
-              <button
-                className="btn btn-secondary btn-sm"
-                onClick={() => currentStepIndex > 0 && setCurrentStepIndex(c => c - 1)}
-                disabled={currentStepIndex === 0 || isRunning}
-                title="Step Backward"
-              >
-                Back
-              </button>
-              <button
-                className={`btn btn-sm ${isRunning ? 'btn-danger' : 'btn-primary'}`}
-                onClick={() => setIsRunning(!isRunning)}
-                disabled={totalSteps === 0}
-              >
-                {isRunning ? 'Pause' : 'Play'}
-              </button>
-              <button
-                className="btn btn-secondary btn-sm"
-                onClick={() => currentStepIndex < totalSteps && setCurrentStepIndex(c => c + 1)}
-                disabled={currentStepIndex >= totalSteps || isRunning}
-                title="Step Forward"
-              >
-                Step
-              </button>
-            </div>
-          </div>
+          <Sidebar
+            {...sidebarProps}
+            variant="mobile-controls"
+            className="simulation-controls-panel"
+            onScrub={(step) => {
+              setCurrentStepIndex(step);
+              setIsRunning(false);
+            }}
+          />
 
           {/* Analytics Instrument Panel (MetricsPanel + LiveNarrator) */}
           <div className="analytics-grid">
@@ -538,6 +501,7 @@ export default function App() {
             />
           </div>
         </main>
+
       </div>
 
       {/* Modals */}
