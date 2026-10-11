@@ -19,8 +19,7 @@ export default function GraphVisualizer({
   onCellClick = () => {},
   onGenerateMaze = () => {},
   onClearWalls = () => {},
-  isFinished = false,
-  accentColor = 'var(--primary)'
+  isFinished = false
 }) {
   const { rows, cols, start, target, walls } = gridConfig;
   const [editMode, setEditMode] = useState('wall'); // 'start' | 'target' | 'wall'
@@ -35,7 +34,7 @@ export default function GraphVisualizer({
   };
 
   return (
-    <div className="card visualizer-canvas-card" style={{ '--viz-accent': accentColor }}>
+    <div className="card visualizer-canvas-card">
       <div className="card-header">
         <h3 className="card-title">
           <Network size={16} color="var(--primary)" />

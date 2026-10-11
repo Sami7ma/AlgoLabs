@@ -40,7 +40,7 @@ export default function LiveNarrator({
 
       {/* Algorithm Principle Insight */}
       <div className="principle-box">
-        <Lightbulb size={16} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+        <Lightbulb size={16} color="#f59e0b" style={{ flexShrink: 0, marginTop: '2px' }} />
         <div className="principle-text">
           <strong>{algoInfo.name} Core Rule:</strong> {algoInfo.detailedExplanation}
         </div>

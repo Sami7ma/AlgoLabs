@@ -62,21 +62,21 @@ export default function Header({
             <BarChart2 size={13} /> <span className="btn-text-hide-mobile">Compare All</span>
           </button>
 
-          {/* Monochrome theme toggle */}
+          {/* Classy Gold/Obsidian Theme Toggle */}
           <button
             className="btn btn-outline btn-sm theme-toggle-btn"
             onClick={toggleTheme}
-            title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={isDark ? 'Switch to Champagne Gold & Wood (Light)' : 'Switch to Obsidian Gold Glass (Dark)'}
           >
             {isDark ? (
               <>
                 <Sun size={14} color="var(--warning)" />
-                <span className="btn-text-hide-mobile">Light Mode</span>
+                <span className="btn-text-hide-mobile">Wood & Gold</span>
               </>
             ) : (
               <>
                 <Moon size={14} color="var(--primary)" />
-                <span className="btn-text-hide-mobile">Dark Mode</span>
+                <span className="btn-text-hide-mobile">Obsidian Dark</span>
               </>
             )}
           </button>

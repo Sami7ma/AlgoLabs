@@ -236,6 +236,10 @@ body {
   gap: 0.35rem;
 }
 
+.brand-text-container {
+  margin-left: -0.35rem;
+}
+
 .brand-logo-frame {
   width: 104px;
   height: 56px;
@@ -2050,8 +2054,16 @@ body {
     padding: 0.5rem 0.85rem;
   }
 
+  .header-inner {
+    justify-content: flex-end;
+  }
+
   .brand-section {
-    margin-left: 0.35rem;
+    margin-left: 0;
+  }
+
+  .brand-text-container {
+    margin-left: -0.55rem;
   }
 
   .brand-title {

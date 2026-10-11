@@ -13,7 +13,7 @@ export default function NQueensVisualizer({
     <div className="card visualizer-canvas-card">
       <div className="card-header">
         <h3 className="card-title">
-          <Crown size={16} color="var(--primary)" />
+          <Crown size={16} color="#f59e0b" />
           <span>N-Queens Recursive Backtracking ({n}×{n} Chessboard)</span>
         </h3>
         <div className="header-meta">
@@ -70,7 +70,7 @@ export default function NQueensVisualizer({
                     {r},{c}
                   </span>
                   {hasQueen && (
-                    <Crown size={26} color="var(--primary)" fill="var(--primary)" />
+                    <Crown size={26} color="#f59e0b" fill="#f59e0b" />
                   )}
                   {isConflict && !hasQueen && (
                     <AlertTriangle size={20} color="var(--danger-text)" />
