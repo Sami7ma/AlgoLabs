@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import confetti from 'canvas-confetti';
+import { Github, Linkedin, Send } from 'lucide-react';
 import { 
   CATEGORIES, 
   ALGORITHMS_REGISTRY, 
@@ -503,6 +504,50 @@ export default function App() {
         </main>
 
       </div>
+
+      <footer className="site-footer">
+        <div className="site-footer-inner">
+          <p className="site-footer-credit">
+            Built by <span>@sami7ma</span>
+          </p>
+
+          <nav className="site-footer-links" aria-label="Creator links">
+            <a
+              className="site-footer-link"
+              href="https://github.com/Sami7ma/AlgoLabs"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Sami7ma on GitHub"
+              title="GitHub"
+            >
+              <Github size={18} aria-hidden="true" />
+              <span>GitHub</span>
+            </a>
+            <a
+              className="site-footer-link"
+              href="https://www.linkedin.com/in/samuel-mifta-062aaa263/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Samuel Mifta on LinkedIn"
+              title="LinkedIn"
+            >
+              <Linkedin size={18} aria-hidden="true" />
+              <span>LinkedIn</span>
+            </a>
+            <a
+              className="site-footer-link"
+              href="https://t.me/sami7ma"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Sami7ma on Telegram"
+              title="Telegram"
+            >
+              <Send size={18} aria-hidden="true" />
+              <span>Telegram</span>
+            </a>
+          </nav>
+        </div>
+      </footer>
 
       {/* Modals */}
       <CustomDataModal
