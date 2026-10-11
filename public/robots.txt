@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://algolab-eight.vercel.app/sitemap.xml
+Sitemap: https://algovisuals-samuel.vercel.app/sitemap.xml
