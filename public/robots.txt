@@ -1,4 +1,5 @@
+
 User-agent: *
 Allow: /
 
-Sitemap: https://algovisuals-samuel.vercel.app/sitemap.xml
+Sitemap: https://algovisuals-sami.vercel.app/sitemap.xml

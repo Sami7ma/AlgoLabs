@@ -1,150 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" sizes="768x768" href="/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- Primary Meta Tags -->
-  <title>AlgoVisuals | Interactive Algorithm Visualizer & Simulator</title>
-  <meta name="title" content="AlgoVisuals | Interactive Algorithm Visualizer & Simulator" />
-  <meta name="description"
-    content="Learn data structures and algorithms through interactive, step-by-step visual simulations for sorting, graph traversal, operating systems, dynamic programming, strings, backtracking, and greedy algorithms." />
-  <meta name="keywords" content="algorithm visualizer, data structures visualizer, sorting visualizer, graph algorithm visualizer, pathfinding visualizer, CPU scheduling simulator, memory allocation simulator, dynamic programming visualizer, DSA learning tool" />
+
+  <title>AlgoVisuals | Interactive Algorithm Visualizer</title>
+
+  <meta
+    name="description"
+    content="Learn data structures and algorithms through interactive visualizations of sorting, graph traversal, shortest paths, CPU scheduling, memory allocation, dynamic programming, and more."
+  />
+
   <meta name="author" content="AlgoVisuals" />
   <meta name="robots" content="index, follow" />
-  <meta name="googlebot" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#f4efe5" />
-  <meta name="application-name" content="AlgoVisuals" />
-  <meta name="apple-mobile-web-app-title" content="AlgoVisuals" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <link rel="canonical" href="https://algovisuals-samuel.vercel.app/" />
-  <link rel="alternate" hreflang="en" href="https://algovisuals-samuel.vercel.app/" />
-  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
-  <!-- Open Graph / Facebook -->
+  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <link
+    rel="canonical"
+    href="https://algovisuals-sami.vercel.app/"
+  />
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="AlgoVisuals" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:url" content="https://algovisuals-samuel.vercel.app/" />
-  <meta property="og:title" content="AlgoVisuals | Interactive Algorithm Visualizer" />
-  <meta property="og:description" content="Learn data structures and algorithms through interactive, step-by-step visual simulations." />
-  <meta property="og:image" content="https://algovisuals-samuel.vercel.app/assets/LightIcon.png" />
-  <meta property="og:image:alt" content="AlgoVisuals interactive algorithm visualizer" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="2400" />
-  <meta property="og:image:height" content="1340" />
+  <meta
+    property="og:url"
+    content="https://algovisuals-sami.vercel.app/"
+  />
+  <meta
+    property="og:title"
+    content="AlgoVisuals | Interactive Algorithm Visualizer"
+  />
+  <meta
+    property="og:description"
+    content="Learn data structures and algorithms through interactive, step-by-step visual simulations."
+  />
+  <meta
+    property="og:image"
+    content="https://algovisuals-sami.vercel.app/og-image.png"
+  />
+  <meta
+    property="og:image:alt"
+    content="AlgoVisuals interactive algorithm visualizer"
+  />
 
-  <!-- Twitter -->
+  <!-- X / Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="https://algovisuals-samuel.vercel.app/" />
-  <meta name="twitter:title" content="AlgoVisuals | Interactive Algorithm Visualizer" />
-  <meta name="twitter:description" content="Explore data structures and algorithms with interactive visual simulations and step-by-step execution." />
-  <meta name="twitter:image" content="https://algovisuals-samuel.vercel.app/assets/LightIcon.png" />
-  <meta name="twitter:image:alt" content="AlgoVisuals algorithm visualization workbench" />
+  <meta
+    name="twitter:title"
+    content="AlgoVisuals | Interactive Algorithm Visualizer"
+  />
+  <meta
+    name="twitter:description"
+    content="Explore sorting, graph algorithms, operating systems, and more with interactive visual simulations."
+  />
+  <meta
+    name="twitter:image"
+    content="https://algovisuals-sami.vercel.app/og-image.png"
+  />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-
-  <!-- JSON-LD Structured Data for Google Search Rich Results -->
+  <!-- Structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": ["WebApplication", "LearningResource"],
+    "@type": "WebApplication",
     "name": "AlgoVisuals",
-    "url": "https://algovisuals-samuel.vercel.app/",
-    "image": "https://algovisuals-samuel.vercel.app/assets/LightIcon.png",
-    "mainEntityOfPage": "https://algovisuals-samuel.vercel.app/",
+    "url": "https://algovisuals-sami.vercel.app/",
+    "description": "An interactive educational tool for exploring data structures and algorithms through visual simulations.",
     "applicationCategory": "EducationalApplication",
-    "applicationSubCategory": "Algorithm Visualization",
-    "operatingSystem": "All",
+    "operatingSystem": "Any",
     "browserRequirements": "Requires JavaScript and a modern web browser",
     "isAccessibleForFree": true,
-    "educationalUse": "Interactive learning",
-    "learningResourceType": "Interactive simulation",
-    "description": "Interactive algorithm visualizer and simulator for Operating Systems, Graph Traversal, Sorting, Searching, Dynamic Programming, Array and String Techniques, Backtracking, and Greedy Algorithms.",
-    "featureList": [
-      "Step-by-step algorithm execution",
-      "Sorting and binary search visualization",
-      "Graph traversal and shortest path visualization",
-      "CPU scheduling, memory allocation, and page replacement simulations",
-      "Dynamic programming matrix visualizations",
-      "Array, string, backtracking, and greedy algorithm simulations",
-      "Theory guide and cross-algorithm comparison tools"
-    ],
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
-    },
-    "author": {
-      "@type": "Organization",
-      "name": "AlgoVisuals"
     }
   }
   </script>
 </head>
 
 <body>
-  <!-- Semantic SEO Crawlable Content for Search Engines -->
   <noscript>
     <main>
-      <h1>AlgoVisuals — Interactive Algorithm Visualizer</h1>
-      <p>Explore and visualize algorithms step by step. AlgoVisuals provides interactive simulations for sorting and searching, graph traversal, shortest paths, CPU scheduling, memory allocation, page replacement, dynamic programming, backtracking, and greedy algorithms.</p>
-      
-      <section>
-        <h2>Algorithm Visualizer</h2>
-        <p>Comprehensive interactive visual studio covering 20+ essential computer science algorithms with real-time execution metrics and deterministic state stepping.</p>
-      </section>
-
-      <section>
-        <h2>Operating System Algorithm Visualizer</h2>
-        <p>Interactive simulations for Memory Management (First Fit, Best Fit, Worst Fit, Next Fit), CPU Scheduling (Round Robin, FCFS, SJF, Priority), and Virtual Memory Page Replacement (LRU, FIFO, Optimal Bélády).</p>
-      </section>
-
-      <section>
-        <h2>CPU Scheduling Simulator</h2>
-        <p>Interactive Gantt charts, real-time process state timelines, waiting time calculation, and turnaround time metrics for Round Robin (Quantum Q=2), Shortest Job First, and Priority Scheduling.</p>
-      </section>
-
-      <section>
-        <h2>Memory Allocation Simulator</h2>
-        <p>Dynamic contiguous memory partitioning simulator displaying memory fragmentation, hole reallocation, and address tracking across First Fit, Best Fit, and Worst Fit algorithms.</p>
-      </section>
-
-      <section>
-        <h2>Graph Algorithm Visualizer</h2>
-        <p>Step-by-step 2D grid pathfinding and node-link tree visualizers for Breadth-First Search (BFS), Depth-First Search (DFS), Dijkstra's Shortest Path, A* (A-Star) Search with Manhattan heuristics, Floyd-Warshall All-Pairs matrix DP, Kruskal's MST, Prim's MST, Topological Sort, and Disjoint Set Union (Union-Find / DSU).</p>
-      </section>
-
-      <section>
-        <h2>Sorting Algorithm Visualizer</h2>
-        <p>Visual comparative sorting laboratory for Quick Sort, Merge Sort, and Bubble Sort with real-time comparison counts, array swap highlights, and logarithmic Binary Search range pointers.</p>
-      </section>
-
-      <section>
-        <h2>Dynamic Programming Visualizer</h2>
-        <p>2D tableau matrix visualizers for 0/1 Knapsack Problem (include/exclude decision grid with subset traceback), Longest Common Subsequence (LCS), and Kadane's Linear Maximum Subarray Sum.</p>
-      </section>
-
-      <section>
-        <h2>Array & String Techniques Visualizer</h2>
-        <p>Interactive sliding window frame tracking, two-pointers inward convergence, Knuth-Morris-Pratt (KMP) pattern matching with precomputed LPS table, and Euclidean GCD modulo division.</p>
-      </section>
-
-      <section>
-        <h2>Backtracking & Greedy Visualizer</h2>
-        <p>N-Queens chessboard state space tree exploration with ray conflict pruning and Activity Selection interval scheduling.</p>
-      </section>
+      <h1>AlgoVisuals: Interactive Algorithm Visualizer</h1>
+      <p>
+        AlgoVisuals helps learners explore sorting, graph algorithms,
+        operating systems, dynamic programming, and other computer
+        science concepts through interactive visual simulations.
+        Enable JavaScript to use the visualizations.
+      </p>
     </main>
   </noscript>
 
-  <!-- React Application Root -->
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
